@@ -20,6 +20,47 @@ public class LevelOrder {
         }
     }
 
+    public static void printLevelLine(Node root) {
+        if (root == null) return;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+
+        while (q.size() > 1) {
+            Node curr = q.poll();
+            if (curr == null) {
+                System.out.println();
+                q.add(null);
+            } else {
+                System.out.print(curr.key + " ");
+                if (curr.left != null) {
+                    q.add(curr.left);
+                }
+                if (curr.right != null) {
+                    q.add(curr.right);
+                }
+            }
+        }
+    }
+
+    public static void printLevelLine2(Node root) {
+        if (root == null) return;
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+            int count = q.size();
+            for (int i = 0; i < count; i++) {
+                Node curr = q.poll();
+                System.out.print(curr.key + " ");
+                if (curr.left != null) q.add(curr.left);
+                if (curr.right != null) q.add(curr.right);
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Node root = new Node(10);
         root.left = new Node(20);
@@ -30,5 +71,9 @@ public class LevelOrder {
         root.right.right = new Node(70);
 
         printLevel(root);
+        System.out.println();
+        printLevelLine(root);
+        System.out.println();
+        printLevelLine2(root);
     }
 }

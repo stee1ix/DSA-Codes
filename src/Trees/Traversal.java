@@ -35,6 +35,27 @@ public class Traversal {
         }
     }
 
+    public static int getSize(Node root) {
+        if (root == null) return 0; // if no nodes then size is 0
+        return 1 + getSize(root.left) + getSize(root.right);
+    }
+
+    public static int getMax(Node root) {
+        if (root == null) return Integer.MIN_VALUE;
+        return Math.max(root.key, Math.max(getMax(root.left), getMax(root.right)));
+    }
+
+    static int maxLevel = 0;
+    public static void printLeft(Node root, int level) {
+        if (root == null) return;
+        if (maxLevel < level) {
+            System.out.print(root.key + " ");
+            maxLevel = level;
+        }
+        printLeft(root.left, level + 1);
+        printLeft(root.right, level + 1);
+    }
+
     public static void main(String[] args) {
         Node root = new Node(10);
         root.left = new Node(20);
@@ -49,6 +70,8 @@ public class Traversal {
         System.out.println("\npostorder");
         postorder(root);
         System.out.println("\nheight->" + height(root));
-
+        System.out.println("Size is " + getSize(root));
+        System.out.println("Max value is " + getMax(root));
+        printLeft(root, 1);
     }
 }

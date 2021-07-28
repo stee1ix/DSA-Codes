@@ -5,8 +5,8 @@ public class Node {
     Node right;
     int key;
 
-    Node(int k) {
-        key = k;
+    Node(int value) {
+        key = value;
         left = right = null;
     }
 }
