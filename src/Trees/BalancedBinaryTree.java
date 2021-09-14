@@ -4,6 +4,7 @@ public class BalancedBinaryTree {
     /*Returns -1 if the tree is imbalanced else return the height of the tree*/
     public static int isBalanced(Node root) {
         if (root == null) return 0;
+
         int leftSubTree = isBalanced(root.left);
         if (leftSubTree == -1) return -1;
         int rightSubTree = isBalanced(root.right);
