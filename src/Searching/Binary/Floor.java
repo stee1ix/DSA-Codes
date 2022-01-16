@@ -1,21 +1,15 @@
-package Searching;
+package Searching.Binary;
 
-public class Ceiling {
+public class Floor {
     public static void main(String[] args) {
-        int[] arr = {2, 3, 9, 10, 14, 18};
-        int target = 12;
-        int ans = ceiling(arr, target);
+        int[] arr = {2, 3, 9, 10,  14, 18};
+        int target = 1;
+        int ans = floor(arr, target);
         System.out.println(ans);
     }
 
-    // return the index of the smallest no. >= target
-    static int ceiling(int[] a, int target) {
-
-        // but what if target is greater than the greatest no. in the array
-        if (target > a[a.length - 1]) {
-            return -1;
-        }
-
+    // return the index of the greatest no. <= target
+    static int floor(int[] a, int target) {
         int start = 0, end = a.length - 1;
 
         while (start <= end) {
@@ -31,6 +25,6 @@ public class Ceiling {
                 return mid;
             }
         }
-        return start;
+        return end;
     }
 }
